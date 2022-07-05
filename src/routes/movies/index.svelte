@@ -1,22 +1,34 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+	export const movies = [
+		{
+			"Name": "Morbius",
+			"Poster": "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6JjfSchsU6daXk2AKX8EEBjO3Fm.jpg"
+		},
+	]
+	
 </script>
 
 <svelte:head>
 	<title>Movies</title>
 </svelte:head>
 
-<div class="movies">
-Movies:
-  <div class="movie">movie 1</div>
-</div>
+<h1>Movies:</h1>
+
+<article class="movies">
+	<div class="movie">
+		{#each movies as movie }
+			<p>{movie.Name}</p>
+			<img src={movie.Poster} alt=""/>
+		{/each}
+	</div>
+</article>
 
 <style>
+	/* TODO fix the poster size by wrapping it in something */
 	.movies {
-		width: 100%;
-		max-width: var(--column-width);
-		margin: var(--column-margin-top) auto 0 auto;
-		line-height: 1;
+		display: flex;
+		margin: auto;
 	}
 	.movie {
 		display: grid;
@@ -31,5 +43,4 @@ Movies:
 		transform: translate(-1px, -1px);
 		transition: filter 0.2s, transform 0.2s;
 	}
-
 </style>
